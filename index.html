@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-2xl font-bold mb-4 text-center">Window Analyzer</h1>
+        
+        <div id="camera-capture" class="mb-4">
+            <button id="start-camera" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+                Start Camera
+            </button>
+            <video id="video" class="mt-4 w-full hidden" autoplay playsinline></video>
+            <button id="capture-photo" class="w-full mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 hidden">
+                Capture Photo
+            </button>
+        </div>
+
+        <div id="result-display" class="hidden">
+            <img id="captured-image" class="w-full mb-4 rounded" alt="Captured window">
+            <div id="analysis-result" class="bg-gray-100 p-4 rounded">
+                <h2 class="font-bold mb-2">Analysis Result</h2>
+                <pre id="result-json" class="whitespace-pre-wrap"></pre>
+            </div>
+            <button id="analyze-another" class="w-full mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+                Analyze Another Window
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Placeholder for JavaScript functionality
+        document.getElementById('start-camera').addEventListener('click', () => {
+            // TODO: Implement camera start logic
+            document.getElementById('video').classList.remove('hidden');
+            document.getElementById('capture-photo').classList.remove('hidden');
+            document.getElementById('start-camera').classList.add('hidden');
+        });
+
+        document.getElementById('capture-photo').addEventListener('click', () => {
+            // TODO: Implement photo capture logic
+            document.getElementById('camera-capture').classList.add('hidden');
+            document.getElementById('result-display').classList.remove('hidden');
+            
+            // Simulated analysis result
+            const simulatedResult = {
+                windowType: "Double-hung",
+                material: "Vinyl",
+                dimensions: {
+                    width: "36 inches",
+                    height: "60 inches"
+                },
+                glassType: "Double-pane, Low-E",
+                energyEfficiency: "High",
+                estimatedAge: "5-10 years",
+                condition: "Good",
+                recommendedMaintenance: [
+                    "Clean tracks and sills",
+                    "Lubricate moving parts",
+                    "Check weatherstripping"
+                ]
+            };
+
+            document.getElementById('result-json').textContent = JSON.stringify(simulatedResult, null, 2);
+        });
+
+        document.getElementById('analyze-another').addEventListener('click', () => {
+            // Reset the UI for another analysis
+            document.getElementById('result-display').classList.add('hidden');
+            document.getElementById('camera-capture').classList.remove('hidden');
+            document.getElementById('start-camera').classList.remove('hidden');
+            document.getElementById('video').classList.add('hidden');
+            document.getElementById('capture-photo').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
